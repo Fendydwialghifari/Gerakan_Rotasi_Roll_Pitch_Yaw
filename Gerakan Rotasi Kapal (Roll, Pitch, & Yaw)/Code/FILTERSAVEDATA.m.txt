@@ -1,0 +1,112 @@
+close all;
+clear;
+clc;
+filename='FendyGyroR1.xlsx';
+mop=[1 2 3];
+
+for i = 1:14
+    A = xlsread(filename,['Pengujian ke ',num2str(i)]);
+    for u = 1:length(mop)
+        m = mean(A);
+        A (:,u)=A(:,u)-m(u);
+    end
+    if i==1
+        A1 = A;
+    elseif i==2
+        A2 = A;
+    elseif i==3
+        A3 = A;
+    elseif i==4
+        A4 = A;
+    elseif i==5
+        A5 = A;
+    elseif i==6
+        A6 = A;
+    elseif i==7
+        A7 = A;
+    elseif i==8
+        A8 = A;
+    elseif i==9
+        A9 = A;
+    elseif i==10
+        A10 = A;
+    elseif i==11
+        A11 = A;
+    elseif i==12
+        A12 = A;
+    elseif i==13
+        A13 = A;
+    else   i==14
+        A14 = A;
+    end
+end
+ b = ones(1,3)/3;
+for i = 1:3
+        a1(:,i) = filtfilt(b,1,A1(:,i));
+        a2(:,i) = filtfilt(b,1,A2(:,i));
+        a3(:,i) = filtfilt(b,1,A3(:,i));
+        a4(:,i) = filtfilt(b,1,A4(:,i));
+        a5(:,i) = filtfilt(b,1,A5(:,i));
+        a6(:,i) = filtfilt(b,1,A6(:,i));
+        a7(:,i) = filtfilt(b,1,A7(:,i));
+        a8(:,i) = filtfilt(b,1,A8(:,i));
+        a9(:,i) = filtfilt(b,1,A9(:,i));
+       a10(:,i) = filtfilt(b,1,A10(:,i));
+       a11(:,i) = filtfilt(b,1,A11(:,i));
+       a12(:,i) = filtfilt(b,1,A12(:,i));
+       a13(:,i) = filtfilt(b,1,A13(:,i));
+       a14(:,i) = filtfilt(b,1,A14(:,i));
+end
+t1=(0:length(A1)-1)./10;
+datake1=[t1',a1];
+t2=(0:length(A2)-1)./10;
+datake2=[t2',a2];
+t3=(0:length(A3)-1)./10;
+datake3=[t3',a3];
+t4=(0:length(A4)-1)./10;
+datake4=[t4',a4];
+t5=(0:length(A5)-1)./10;
+datake5=[t5',a5];
+t6=(0:length(A6)-1)./10;
+datake6=[t6',a6];
+t7=(0:length(A7)-1)./10;
+datake7=[t7',a7];
+t8=(0:length(A8)-1)./10;
+datake8=[t8',a8];
+t9=(0:length(A9)-1)./10;
+datake9=[t9',a9];
+t10=(0:length(A10)-1)./10;
+datake10=[t10',a10];
+t11=(0:length(A11)-1)./10;
+datake11=[t11',a11];
+t12=(0:length(A12)-1)./10;
+datake12=[t12',a12];
+t13=(0:length(A13)-1)./10;
+datake13=[t13',a13];
+t14=(0:length(A14)-1)./10;
+datake14=[t14',a14];
+%%%%%%%%%%%%%%%%%%%% CEK GRAFIK %%%%%%%%%%%%
+figure
+  for i=1:3
+      subplot(3,1,i)
+      plot(t5,A5(:,i),t5,a5(:,i))
+  end
+%%%%%%%%%%%%%%%%%%% DATA ASLI DAN FILTER %%%%
+namenye = 'FilterDataGyro.xlsx';
+%for i = 1:14
+ %   xlswrite(namenye,['datake',num2str(i)],[num2str(i)]);
+%end
+xlswrite(namenye,datake1,1);
+xlswrite(namenye,datake2,2);
+xlswrite(namenye,datake3,3);
+xlswrite(namenye,datake4,4);
+xlswrite(namenye,datake5,5);
+xlswrite(namenye,datake6,6);
+xlswrite(namenye,datake7,7);
+xlswrite(namenye,datake8,8);
+xlswrite(namenye,datake9,9);
+xlswrite(namenye,datake10,10);
+xlswrite(namenye,datake11,11);
+xlswrite(namenye,datake12,12);
+xlswrite(namenye,datake13,13);
+xlswrite(namenye,datake14,14);
